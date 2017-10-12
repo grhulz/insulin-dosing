@@ -1,0 +1,52 @@
+<Configuration monitorInterval="60" packages="space.janiekitty.insulindosing.log4j2">
+    <Properties>
+        <Property name="log-path">applogs</Property>
+    </Properties>
+    <Appenders>
+        <Console name="Console-Appender" target="SYSTEM_OUT">
+            <PatternLayout>
+                <pattern>
+                    [%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n
+                </pattern>>
+            </PatternLayout>
+        </Console>
+        <RollingFile name="App-File-Appender">
+            <FileName>${log-path}/insulin-dosing-log.html</FileName>
+            <FilePattern>${log-path}/insulin-dosing-log-%d{yyyy-MM-dd}.html</FilePattern>
+            <CustomHTMLLayout>
+                <charset>UTF-8</charset>
+                <title>Insulin Dosing Info Logs</title>
+                <locationInfo>true</locationInfo>
+            </CustomHTMLLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+                <SizeBasedTriggeringPolicy size="10 MB" />
+            </Policies>
+        </RollingFile>
+        <RollingFile name="SpringBoot-File-Appender">
+            <FileName>${log-path}/springboot-log.html</FileName>
+            <FilePattern>${log-path}/springboot-log-%d{yyyy-MM-dd}.html</FilePattern>
+            <CustomHTMLLayout>
+                <charset>UTF-8</charset>
+                <title>Spring Boot Info Logs</title>
+                <locationInfo>true</locationInfo>
+            </CustomHTMLLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+                <SizeBasedTriggeringPolicy size="10 MB" />
+            </Policies>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Logger name="org.springframework.web" level="info" additivity="false">
+            <AppenderRef ref="SpringBoot-File-Appender"/>
+            <AppenderRef ref="Console-Appender"/>
+        </Logger>
+        <Logger name="space.janiekitty.insulindosing" level="debug" additivity="false">
+            <AppenderRef ref="App-File-Appender"/>
+         </Logger>
+        <Root>
+            <AppenderRef ref="Console-Appender"/>
+        </Root>
+    </Loggers>
+</Configuration>
