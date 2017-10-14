@@ -3,19 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package space.janiekitty.insulindosing.models.forms;
+package info.insulindosing.model.form;
 
 import java.util.List;
-import space.janiekitty.insulindosing.models.Treatment;
+import info.insulindosing.model.MealBolus;
 
 /**
  *
  * @author Greg Hull grhulz@gmail.com
  */
-public class TreatmentForm {
+public class MealBolusForm {
 private String startDate;
 private String endDate;
-private List<Treatment> treatments;
+private List<MealBolus> mealBoluses;
 
     /**
      * @return the startDate
@@ -46,17 +46,17 @@ private List<Treatment> treatments;
     }
 
     /**
-     * @return the treatments
+     * @return the mealBoluses
      */
-    public List<Treatment> getTreatments() {
-        return treatments;
+    public List<MealBolus> getMealBoluses() {
+        return mealBoluses;
     }
 
     /**
-     * @param treatments the treatments to set
+     * @param mealBoluses the mealBoluses to set
      */
-    public void setTreatments(List<Treatment> treatments) {
-        this.treatments = treatments;
+    public void setMealBoluses(List<MealBolus> mealBoluses) {
+        this.mealBoluses = mealBoluses;
     }
     
 }

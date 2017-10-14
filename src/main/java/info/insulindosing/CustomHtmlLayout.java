@@ -14,7 +14,7 @@
  * See the license for the specific language governing permissions and
  * limitations under the license.
  */
-package space.janiekitty.insulindosing.log4j2;
+package info.insulindosing;
 
 import java.io.IOException;
 import java.io.InterruptedIOException;

@@ -1,4 +1,4 @@
-package space.janiekitty.insulindosing.models;
+package info.insulindosing.model;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -10,7 +10,6 @@ import org.springframework.data.mongodb.core.mapping.Field;
 @Document(collection = "treatments")
 public class Treatment extends BaseEntity {
 
-    @Field("_class")
     protected String eventType;
 
     public Treatment() {}

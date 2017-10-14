@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package space.janiekitty.insulindosing.repositories;
+package info.insulindosing.repository;
 
 import java.time.Instant;
 import java.util.List;
 import org.springframework.data.mongodb.repository.MongoRepository;
-import space.janiekitty.insulindosing.models.MealBolus;
+import info.insulindosing.model.MealBolus;
 
 /**
  *
@@ -17,4 +17,5 @@ import space.janiekitty.insulindosing.models.MealBolus;
 public interface MealBolusRepository extends MongoRepository <MealBolus, Long> {
     List<MealBolus> findByCreatedDateBetween(Instant startDate, Instant endDate);
     List<MealBolus> findByModifiedDateBetween(Instant startDate, Instant endDate);
+    List<MealBolus> findByCreatedBy(String createdBy);
 }

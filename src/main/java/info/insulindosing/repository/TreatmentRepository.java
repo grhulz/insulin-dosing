@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package space.janiekitty.insulindosing.repositories;
+package info.insulindosing.repository;
 
 import java.time.Instant;
 import java.util.List;
 import org.springframework.data.mongodb.repository.MongoRepository;
-import space.janiekitty.insulindosing.models.Treatment;
+import info.insulindosing.model.Treatment;
 
 /**
  *

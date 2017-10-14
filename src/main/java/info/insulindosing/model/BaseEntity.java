@@ -1,4 +1,4 @@
-package space.janiekitty.insulindosing.models;
+package info.insulindosing.model;
 
 import java.io.Serializable;
 import java.time.Instant;

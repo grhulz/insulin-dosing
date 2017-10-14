@@ -1,4 +1,4 @@
-package space.janiekitty.insulindosing.config;
+package info.insulindosing;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

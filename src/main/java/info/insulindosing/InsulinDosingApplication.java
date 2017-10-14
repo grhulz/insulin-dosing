@@ -1,4 +1,4 @@
-package space.janiekitty.insulindosing;
+package info.insulindosing;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

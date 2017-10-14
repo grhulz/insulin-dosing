@@ -1,4 +1,4 @@
-package space.janiekitty.insulindosing.controllers;
+package info.insulindosing.controller;
 
 /**
  *
@@ -18,11 +18,11 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import space.janiekitty.insulindosing.models.MealBolus;
-import space.janiekitty.insulindosing.models.Treatment;
-import space.janiekitty.insulindosing.models.forms.TreatmentForm;
-import space.janiekitty.insulindosing.services.MealBolusService;
-import space.janiekitty.insulindosing.services.TreatmentService;
+import info.insulindosing.model.MealBolus;
+import info.insulindosing.model.Treatment;
+import info.insulindosing.model.form.TreatmentForm;
+import info.insulindosing.service.MealBolusService;
+import info.insulindosing.service.TreatmentService;
 
 @Controller
 public class TreatmentController {

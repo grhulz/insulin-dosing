@@ -1,4 +1,4 @@
-package space.janiekitty.insulindosing.services;
+package info.insulindosing.service;
 
 /**
  *
@@ -15,9 +15,9 @@ import java.time.format.DateTimeParseException;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import space.janiekitty.insulindosing.models.MealBolus;
-import space.janiekitty.insulindosing.repositories.MealBolusRepository;
-import space.janiekitty.insulindosing.services.utilities.DateUtilities;
+import info.insulindosing.model.MealBolus;
+import info.insulindosing.repository.MealBolusRepository;
+import space.janiekitty.insulindosing.service.utility.DateUtilities;
 
 @Service
 public class MealBolusService {
@@ -35,7 +35,14 @@ public class MealBolusService {
         DateUtilities dateUtilities = new DateUtilities();
         Instant startDate = dateUtilities.createInstantFromDateTimeString(startDateString);
         Instant endDate = dateUtilities.createInstantFromDateTimeString(endDateString);
-        List<MealBolus> mealBoluses = this.mealBolusRepository.findByModifiedDateBetween(startDate, endDate);
+//        List<MealBolus> mealBoluses = this.mealBolusRepository.findByModifiedDateBetween(startDate, endDate);
+        MealBolus test = new MealBolus();
+        test.setAbsorptionTime(BigDecimal.ONE);
+        test.setCarbs(BigDecimal.ZERO);
+        test.setModifiedDate(Instant.now());
+        test.setCreatedBy("ghull");
+        this.mealBolusRepository.save(test);
+        List<MealBolus> mealBoluses = this.mealBolusRepository.findByCreatedBy("ghull");
         return mealBoluses;
     }
 }

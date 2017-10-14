@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package space.janiekitty.insulindosing.services.utilities;
+package space.janiekitty.insulindosing.service.utility;
 
 import java.time.Instant;
 import java.time.format.DateTimeParseException;

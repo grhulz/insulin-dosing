@@ -1,4 +1,4 @@
-package space.janiekitty.insulindosing.services;
+package info.insulindosing.service;
 
 /**
  *
@@ -14,9 +14,9 @@ import java.time.format.DateTimeParseException;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import space.janiekitty.insulindosing.models.Treatment;
-import space.janiekitty.insulindosing.repositories.TreatmentRepository;
-import space.janiekitty.insulindosing.services.utilities.DateUtilities;
+import info.insulindosing.model.Treatment;
+import info.insulindosing.repository.TreatmentRepository;
+import space.janiekitty.insulindosing.service.utility.DateUtilities;
 
 @Service
 public class TreatmentService {
