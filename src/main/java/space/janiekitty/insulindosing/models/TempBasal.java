@@ -1,6 +1,7 @@
 package space.janiekitty.insulindosing.models;
 
 import java.math.BigDecimal;
+import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -9,7 +10,6 @@ import org.springframework.data.mongodb.core.mapping.Field;
  *
  * @author greghull
  */
-@Document(collection = "treatments")
 @TypeAlias("Temp Basal")
 public class TempBasal extends Treatment {
 
@@ -27,7 +27,9 @@ public class TempBasal extends Treatment {
 
     public TempBasal() {}
 
+    @PersistenceConstructor
     public TempBasal(String temp, BigDecimal absolute, BigDecimal rate, BigDecimal duration) {
+        this.eventType = "Temp Basal";
         this.temp = temp;
         this.absolute = absolute;
         this.rate = rate;

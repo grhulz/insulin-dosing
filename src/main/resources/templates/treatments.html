@@ -27,9 +27,9 @@
 </nav>
 <div class="container">
     <div class="page-header">
-        <h1>Welcome to the meal boluses listing page</h1>
+        <h1>Welcome to the treatments listing page</h1>
     </div>
-    <form name="ui" action="#" th:action="@{/mealboluses}" th:object="${mealBolusForm}" method="post">
+    <form name="ui" action="#" th:action="@{/treatments}" th:object="${treatmentForm}" method="post">
     <div class="input-group">
         <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
         <input type="text" class="form-control daterange" id="daterange" name="daterange" aria-describedby="basic-addon1"/>
@@ -45,12 +45,9 @@
             <td>Carbs</td>
             <td>Absorption Time</td>
         </tr>
-        <tr th:each="mealBolus: ${mealBolusForm.mealBoluses}">
-            <td th:text="${mealBolus.eventType}">Event Type</td>
-            <td th:text="${mealBolus.foodType}">Food Type</td>
-            <td th:text="${mealBolus.createdDate}">Time</td>
-            <td th:text="${mealBolus.carbs}">Carbs</td>
-            <td th:text="${mealBolus.absorptionTime}">Absorption Time</td>
+        <tr th:each="treatment: ${treatmentForm.treatments}">
+            <td th:text="${treatment.eventType}">Event Type</td>
+            <td th:text="${treatment.createdDate}">Time</td>
         </tr>
     </table>
 </div>

@@ -1,14 +1,16 @@
 package space.janiekitty.insulindosing.models;
 
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 /**
  *
  * @author greghull
  */
+@Document(collection = "treatments")
 public class Treatment extends BaseEntity {
 
-    @Field("eventType")
+    @Field("_class")
     protected String eventType;
 
     public Treatment() {}

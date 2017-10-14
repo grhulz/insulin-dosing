@@ -11,17 +11,21 @@ import com.mongodb.WriteConcern;
 @Configuration
 public class SpringMongoConfig extends AbstractMongoConfiguration {
 
-	@Override
-	protected String getDatabaseName() {
-		return "eviejoyjaniedb";
-	}
+    @Override
+    protected String getDatabaseName() {
+        return "eviejoyjaniedb";
+    }
 
-	@Override
-	@Bean
-	public Mongo mongo() throws Exception {
-		Mongo mongo = new MongoClient();
-		mongo.setWriteConcern(WriteConcern.ACKNOWLEDGED);
-		return mongo;
-	}
+    @Override
+    @Bean
+    public Mongo mongo() throws Exception {
+        Mongo mongo = new MongoClient();
+        mongo.setWriteConcern(WriteConcern.ACKNOWLEDGED);
+        return mongo;
+    }
 
+    @Override
+    protected String getMappingBasePackage() {
+        return "space.janiekitty.insulindosing";
+    }
 }

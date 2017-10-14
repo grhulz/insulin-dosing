@@ -1,6 +1,7 @@
 package space.janiekitty.insulindosing.models;
 
 import java.math.BigDecimal;
+import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -9,7 +10,6 @@ import org.springframework.data.mongodb.core.mapping.Field;
  *
  * @author greghull
  */
-@Document(collection = "treatments")
 @TypeAlias("Meal Bolus")
 public class MealBolus extends Treatment {
 
@@ -22,7 +22,9 @@ public class MealBolus extends Treatment {
 
     public MealBolus() {}
 
+    @PersistenceConstructor
     public MealBolus(String foodType, BigDecimal carbs, BigDecimal absorptionTime) {
+        this.eventType = "Meal Bolus";
         this.foodType = foodType;
         this.carbs = carbs;
         this.absorptionTime = absorptionTime;
