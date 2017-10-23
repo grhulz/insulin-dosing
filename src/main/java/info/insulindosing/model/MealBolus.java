@@ -1,12 +1,9 @@
 package info.insulindosing.model;
 
-import java.math.BigDecimal;
+import info.insulindosing.EventType;
 import java.time.Instant;
+import java.util.Objects;
 import org.bson.types.ObjectId;
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -18,105 +15,39 @@ import org.springframework.data.mongodb.core.mapping.Field;
  */
 @Document(collection = "treatments")
 @TypeAlias("Meal Bolus")
-public class MealBolus {
-
-    @Id
-    @Field("_id")
-    private ObjectId id;    
-
-    @CreatedDate
-    @Field("created_at")
-    private String createdDate;
- 
-    @LastModifiedDate
-    @Field("timestamp")
-    private Instant modifiedDate;
-
-    @CreatedBy
-    @Field("enteredBy")
-    private String createdBy;
+public class MealBolus extends Treatment {
 
     @Field("eventType")
-    private String eventType;
+    private String eventType = EventType.MEAL_BOLUS.toString();
 
     @Field("foodType")
-    private String foodType;
+    private String foodType = "";
 
     @Field("carbs")
-    private BigDecimal carbs;
+    private int carbs;
 
     @Field("absorptionTime")
-    private BigDecimal absorptionTime;
+    private int absorptionTime = 180;
 
-    public MealBolus() {}
+    public MealBolus() {
+    }
 
     @PersistenceConstructor
-    public MealBolus(String foodType, BigDecimal carbs, BigDecimal absorptionTime) {
-        this.eventType = "Meal Bolus";
-        this.foodType = foodType;
+    public MealBolus(String foodType, int carbs, Integer absorptionTime, String loopCreatedDate, String loopModifiedDate, String loopEnteredBy, ObjectId id, Instant createdDate, Instant modifiedDate, String createdBy) {
+        super(loopCreatedDate, loopModifiedDate, loopEnteredBy, id, createdDate, modifiedDate, createdBy);
+        this.eventType = EventType.MEAL_BOLUS.toString();
+        if (null != foodType) {
+            this.foodType = foodType;
+        }
         this.carbs = carbs;
-        this.absorptionTime = absorptionTime;
+        if (null != absorptionTime) {
+            this.absorptionTime = absorptionTime;
+        }
     }
 
     @Override
     public String toString() {
         return super.toString() + " " + String.format("MealBolus[foodType=%s, carbs='%s', absorptionTime='%s']", getFoodType(), getCarbs(), getAbsorptionTime());
-    }
-
-    /**
-     * @return the id
-     */
-    public ObjectId getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(ObjectId id) {
-        this.id = id;
-    }
-
-    /**
-     * @return the createdDate
-     */
-    public String getCreatedDate() {
-        return createdDate;
-    }
-
-    /**
-     * @param createdDate the createdDate to set
-     */
-    public void setCreatedDate(String createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    /**
-     * @return the modifiedDate
-     */
-    public Instant getModifiedDate() {
-        return modifiedDate;
-    }
-
-    /**
-     * @param modifiedDate the modifiedDate to set
-     */
-    public void setModifiedDate(Instant modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
-
-    /**
-     * @return the createdBy
-     */
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    /**
-     * @param createdBy the createdBy to set
-     */
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
     }
 
     /**
@@ -150,28 +81,28 @@ public class MealBolus {
     /**
      * @return the carbs
      */
-    public BigDecimal getCarbs() {
+    public int getCarbs() {
         return carbs;
     }
 
     /**
      * @param carbs the carbs to set
      */
-    public void setCarbs(BigDecimal carbs) {
+    public void setCarbs(int carbs) {
         this.carbs = carbs;
     }
 
     /**
      * @return the absorptionTime
      */
-    public BigDecimal getAbsorptionTime() {
+    public int getAbsorptionTime() {
         return absorptionTime;
     }
 
     /**
      * @param absorptionTime the absorptionTime to set
      */
-    public void setAbsorptionTime(BigDecimal absorptionTime) {
+    public void setAbsorptionTime(int absorptionTime) {
         this.absorptionTime = absorptionTime;
     }
 

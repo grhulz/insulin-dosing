@@ -1,5 +1,6 @@
 package info.insulindosing.model;
 
+import info.insulindosing.EventType;
 import java.math.BigDecimal;
 import java.time.Instant;
 import org.bson.types.ObjectId;
@@ -18,45 +19,33 @@ import org.springframework.data.mongodb.core.mapping.Field;
  */
 @Document(collection = "treatments")
 @TypeAlias("Temp Basal")
-public class TempBasal {
-
-    @Id
-    @Field("_id")
-    private ObjectId id;    
-
-    @CreatedDate
-    @Field("created_at")
-    private String createdDate;
- 
-    @LastModifiedDate
-    @Field("timestamp")
-    private Instant modifiedDate;
-
-    @CreatedBy
-    @Field("enteredBy")
-    private String createdBy;
+public class TempBasal extends Treatment {
 
     @Field("eventType")
-    private String eventType;
+    private String eventType = EventType.TEMP_BASAL.toString();
 
     @Field("temp")
-    private String temp;
+    private String temp = "absolute";
 
     @Field("absolute")
-    private BigDecimal absolute;
+    private double absolute;
 
     @Field("rate")
-    private BigDecimal rate;
+    private double rate;
 
     @Field("duration")
-    private BigDecimal duration;
+    private int duration;
 
-    public TempBasal() {}
+    public TempBasal() {
+    }
 
     @PersistenceConstructor
-    public TempBasal(String temp, BigDecimal absolute, BigDecimal rate, BigDecimal duration) {
-        this.eventType = "Temp Basal";
-        this.temp = temp;
+    public TempBasal(String eventType, String temp, double absolute, double rate, int duration, String loopCreatedDate, String loopModifiedDate, String loopEnteredBy, ObjectId id, Instant createdDate, Instant modifiedDate, String createdBy) {
+        super(loopCreatedDate, loopModifiedDate, loopEnteredBy, id, createdDate, modifiedDate, createdBy);
+        this.eventType = EventType.TEMP_BASAL.toString();
+        if (null != temp) {
+            this.temp = temp;
+        }
         this.absolute = absolute;
         this.rate = rate;
         this.duration = duration;
@@ -65,62 +54,6 @@ public class TempBasal {
     @Override
     public String toString() {
         return super.toString() + " " + String.format("TempBasal[temp=%s, absolute='%s', rate='%s', duration='%s']", getTemp(), getAbsolute(), getRate(), getDuration());
-    }
-
-    /**
-     * @return the id
-     */
-    public ObjectId getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(ObjectId id) {
-        this.id = id;
-    }
-
-    /**
-     * @return the createdDate
-     */
-    public String getCreatedDate() {
-        return createdDate;
-    }
-
-    /**
-     * @param createdDate the createdDate to set
-     */
-    public void setCreatedDate(String createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    /**
-     * @return the modifiedDate
-     */
-    public Instant getModifiedDate() {
-        return modifiedDate;
-    }
-
-    /**
-     * @param modifiedDate the modifiedDate to set
-     */
-    public void setModifiedDate(Instant modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
-
-    /**
-     * @return the createdBy
-     */
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    /**
-     * @param createdBy the createdBy to set
-     */
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
     }
 
     /**
@@ -154,42 +87,42 @@ public class TempBasal {
     /**
      * @return the absolute
      */
-    public BigDecimal getAbsolute() {
+    public double getAbsolute() {
         return absolute;
     }
 
     /**
      * @param absolute the absolute to set
      */
-    public void setAbsolute(BigDecimal absolute) {
+    public void setAbsolute(double absolute) {
         this.absolute = absolute;
     }
 
     /**
      * @return the rate
      */
-    public BigDecimal getRate() {
+    public double getRate() {
         return rate;
     }
 
     /**
      * @param rate the rate to set
      */
-    public void setRate(BigDecimal rate) {
+    public void setRate(double rate) {
         this.rate = rate;
     }
 
     /**
      * @return the duration
      */
-    public BigDecimal getDuration() {
+    public int getDuration() {
         return duration;
     }
 
     /**
      * @param duration the duration to set
      */
-    public void setDuration(BigDecimal duration) {
+    public void setDuration(int duration) {
         this.duration = duration;
     }
 

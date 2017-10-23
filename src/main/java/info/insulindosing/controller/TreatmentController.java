@@ -22,7 +22,7 @@ import info.insulindosing.model.MealBolus;
 import info.insulindosing.model.Treatment;
 import info.insulindosing.model.form.TreatmentForm;
 import info.insulindosing.service.MealBolusService;
-import info.insulindosing.service.TreatmentService;
+import info.insulindosing.service.InitDataService;
 
 @Controller
 public class TreatmentController {
@@ -30,7 +30,7 @@ public class TreatmentController {
     private static final Logger logger = LogManager.getLogger(TreatmentController.class);
     
     @Autowired
-    private TreatmentService treatmentService;
+    private InitDataService treatmentService;
 
     @GetMapping("/treatments")
     public String treatmentForm(Model model) {
@@ -40,9 +40,11 @@ public class TreatmentController {
 
     @PostMapping("/treatments")
     public String submitDateRange(@ModelAttribute TreatmentForm treatmentForm){
-        logger.debug("The start date is " + treatmentForm.getStartDate() + " and the end date is " + treatmentForm.getEndDate());
-        List<Treatment> treatments = this.treatmentService.getTreatmentsForDateRange(treatmentForm.getStartDate(), treatmentForm.getEndDate());
-        treatmentForm.setTreatments(treatments);
+        //logger.debug("The start date is " + treatmentForm.getStartDate() + " and the end date is " + treatmentForm.getEndDate());
+        //List<Treatment> treatments = this.treatmentService.getTreatmentsForDateRange(treatmentForm.getStartDate(), treatmentForm.getEndDate());
+        String message = this.treatmentService.initTreatmentData();
+        logger.debug("The message is " + message);
+        treatmentForm.setMessage(message);
         return "treatments";
     }
 }

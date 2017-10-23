@@ -14,7 +14,9 @@ import info.insulindosing.model.Treatment;
  *
  * @author Greg Hull grhulz@gmail.com
  */
-public interface TreatmentRepository extends MongoRepository <Treatment, Long> {
+public interface TreatmentRepository extends MongoRepository <Treatment, String> {
     List<Treatment> findByCreatedDateBetween(Instant startDate, Instant endDate);
     List<Treatment> findByModifiedDateBetween(Instant startDate, Instant endDate);
+    List<Treatment> findByLoopModifiedDate(String loopModifiedDate);
+    List<Treatment> findByLoopEnteredBy(String loopEnteredBy);
 }

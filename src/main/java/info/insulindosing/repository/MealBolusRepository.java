@@ -14,8 +14,9 @@ import info.insulindosing.model.MealBolus;
  *
  * @author Greg Hull grhulz@gmail.com
  */
-public interface MealBolusRepository extends MongoRepository <MealBolus, Long> {
+public interface MealBolusRepository extends MongoRepository <MealBolus, String> {
     List<MealBolus> findByCreatedDateBetween(Instant startDate, Instant endDate);
     List<MealBolus> findByModifiedDateBetween(Instant startDate, Instant endDate);
     List<MealBolus> findByCreatedBy(String createdBy);
+    List<MealBolus> findByLoopEnteredByAndEventType(String loopEnteredBy, String eventType);
 }

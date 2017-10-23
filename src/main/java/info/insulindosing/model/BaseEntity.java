@@ -4,39 +4,47 @@ import java.io.Serializable;
 import java.time.Instant;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
- 
-import java.time.ZonedDateTime;
+
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.mongodb.core.mapping.Field;
- 
-public abstract class BaseEntity implements Serializable{
- 
+
+public abstract class BaseEntity implements Serializable {
+
     @Id
-    @Field("_id")
-    protected ObjectId id;    
+    protected ObjectId id;
 
     @CreatedDate
-    @Field("created_at")
-    protected String createdDate;
- 
+    @Field("createdDate")
+    protected Instant createdDate = Instant.now();
+
     @LastModifiedDate
-    @Field("timestamp")
-    protected Instant modifiedDate;
+    @Field("lastModifiedDate")
+    protected Instant modifiedDate = Instant.now();
 
     @CreatedBy
-    @Field("enteredBy")
-    protected String createdBy;
+    @Field("createdBy")
+    protected String createdBy = "insulin-dosing";
 
-    public BaseEntity() {}
-
-    public BaseEntity(ObjectId id, String createdDate, Instant modifiedDate, String createdBy) {
-        this.id = id;
-        this.createdDate = createdDate;
-        this.modifiedDate = modifiedDate;
-        this.createdBy = createdBy;
+    public BaseEntity() {
     }
+
+    @PersistenceConstructor
+    public BaseEntity(ObjectId id, Instant createdDate, Instant modifiedDate, String createdBy) {
+        this.id = id;
+        if (null != createdDate) {
+            this.createdDate = createdDate;
+        }
+        if (null != modifiedDate) {
+            this.modifiedDate = modifiedDate;
+        }
+        if (null != createdBy) {
+            this.createdBy = createdBy;
+        }
+    }
+
     /**
      * @return the id
      */
@@ -54,14 +62,14 @@ public abstract class BaseEntity implements Serializable{
     /**
      * @return the createdDate
      */
-    public String getCreatedDate() {
+    public Instant getCreatedDate() {
         return createdDate;
     }
 
     /**
      * @param createdDate the createdDate to set
      */
-    public void setCreatedDate(String createdDate) {
+    public void setCreatedDate(Instant createdDate) {
         this.createdDate = createdDate;
     }
 
@@ -92,5 +100,5 @@ public abstract class BaseEntity implements Serializable{
     public void setModifiedDate(Instant modifiedDate) {
         this.modifiedDate = modifiedDate;
     }
-    
+
 }

@@ -35,14 +35,14 @@ public class MealBolusService {
         DateUtilities dateUtilities = new DateUtilities();
         Instant startDate = dateUtilities.createInstantFromDateTimeString(startDateString);
         Instant endDate = dateUtilities.createInstantFromDateTimeString(endDateString);
-//        List<MealBolus> mealBoluses = this.mealBolusRepository.findByModifiedDateBetween(startDate, endDate);
-        MealBolus test = new MealBolus();
-        test.setAbsorptionTime(BigDecimal.ONE);
-        test.setCarbs(BigDecimal.ZERO);
-        test.setModifiedDate(Instant.now());
-        test.setCreatedBy("ghull");
-        this.mealBolusRepository.save(test);
-        List<MealBolus> mealBoluses = this.mealBolusRepository.findByCreatedBy("ghull");
+        List<MealBolus> mealBoluses = this.mealBolusRepository.findByModifiedDateBetween(startDate, endDate);
+//        MealBolus test = new MealBolus();
+//        test.setAbsorptionTime(BigDecimal.ONE);
+//        test.setCarbs(BigDecimal.ZERO);
+//        test.setModifiedDate(Instant.now());
+//        test.setCreatedBy("ghull");
+//        this.mealBolusRepository.save(test);
+//        List<MealBolus> mealBoluses = this.mealBolusRepository.findByCreatedBy("ghull");
         return mealBoluses;
     }
 }

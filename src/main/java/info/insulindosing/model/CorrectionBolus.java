@@ -1,12 +1,9 @@
 package info.insulindosing.model;
 
+import info.insulindosing.EventType;
 import java.math.BigDecimal;
 import java.time.Instant;
 import org.bson.types.ObjectId;
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -18,50 +15,40 @@ import org.springframework.data.mongodb.core.mapping.Field;
  */
 @Document(collection = "treatments")
 @TypeAlias("Correction Bolus")
-public class CorrectionBolus {
-
-    @Id
-    @Field("_id")
-    private ObjectId id;    
-
-    @CreatedDate
-    @Field("created_at")
-    private String createdDate;
- 
-    @LastModifiedDate
-    @Field("timestamp")
-    private Instant modifiedDate;
-
-    @CreatedBy
-    @Field("enteredBy")
-    private String createdBy;
+public class CorrectionBolus extends Treatment {
 
     @Field("eventType")
-    private String eventType;
+    private String eventType = EventType.CORRECTION_BOLUS.toString();
 
     @Field("type")
-    private String type;
+    private String type = "normal";
 
     @Field("insulin")
-    private BigDecimal insulin;
+    private double insulin;
 
     @Field("programmed")
-    private BigDecimal programmed;
+    private double programmed = insulin;
 
     @Field("unabsorbed")
-    private BigDecimal unabsorbed;
+    private int unabsorbed;
 
     @Field("duration")
-    private BigDecimal duration;
+    private int duration;
 
-    public CorrectionBolus() {}
+    public CorrectionBolus() {
+    }
 
     @PersistenceConstructor
-    public CorrectionBolus(String type, BigDecimal insulin, BigDecimal programmed, BigDecimal unabsorbed, BigDecimal duration) {
-        this.eventType = "Correction Bolus";
-        this.type = type;
+    public CorrectionBolus(String type, double insulin, Double programmed, int unabsorbed, int duration, String loopCreatedDate, String loopModifiedDate, String loopEnteredBy, ObjectId id, Instant createdDate, Instant modifiedDate, String createdBy) {
+        super(loopCreatedDate, loopModifiedDate, loopEnteredBy, id, createdDate, modifiedDate, createdBy);
+        this.eventType = EventType.CORRECTION_BOLUS.toString();
+        if (null != type) {
+            this.type = type;
+        }
         this.insulin = insulin;
-        this.programmed = programmed;
+        if (null != programmed) {
+            this.programmed = programmed;
+        }
         this.unabsorbed = unabsorbed;
         this.duration = duration;
     }
@@ -69,62 +56,6 @@ public class CorrectionBolus {
     @Override
     public String toString() {
         return super.toString() + " " + String.format("CorrectionBolus[type=%s, insulin='%s', programmed='%s', unabsorbed='%s', duration='%s']", getType(), getInsulin(), getProgrammed(), getUnabsorbed(), getDuration());
-    }
-
-    /**
-     * @return the id
-     */
-    public ObjectId getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(ObjectId id) {
-        this.id = id;
-    }
-
-    /**
-     * @return the createdDate
-     */
-    public String getCreatedDate() {
-        return createdDate;
-    }
-
-    /**
-     * @param createdDate the createdDate to set
-     */
-    public void setCreatedDate(String createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    /**
-     * @return the modifiedDate
-     */
-    public Instant getModifiedDate() {
-        return modifiedDate;
-    }
-
-    /**
-     * @param modifiedDate the modifiedDate to set
-     */
-    public void setModifiedDate(Instant modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
-
-    /**
-     * @return the createdBy
-     */
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    /**
-     * @param createdBy the createdBy to set
-     */
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
     }
 
     /**
@@ -158,56 +89,56 @@ public class CorrectionBolus {
     /**
      * @return the insulin
      */
-    public BigDecimal getInsulin() {
+    public double getInsulin() {
         return insulin;
     }
 
     /**
      * @param insulin the insulin to set
      */
-    public void setInsulin(BigDecimal insulin) {
+    public void setInsulin(double insulin) {
         this.insulin = insulin;
     }
 
     /**
      * @return the programmed
      */
-    public BigDecimal getProgrammed() {
+    public double getProgrammed() {
         return programmed;
     }
 
     /**
      * @param programmed the programmed to set
      */
-    public void setProgrammed(BigDecimal programmed) {
+    public void setProgrammed(double programmed) {
         this.programmed = programmed;
     }
 
     /**
      * @return the unabsorbed
      */
-    public BigDecimal getUnabsorbed() {
+    public int getUnabsorbed() {
         return unabsorbed;
     }
 
     /**
      * @param unabsorbed the unabsorbed to set
      */
-    public void setUnabsorbed(BigDecimal unabsorbed) {
+    public void setUnabsorbed(int unabsorbed) {
         this.unabsorbed = unabsorbed;
     }
 
     /**
      * @return the duration
      */
-    public BigDecimal getDuration() {
+    public int getDuration() {
         return duration;
     }
 
     /**
      * @param duration the duration to set
      */
-    public void setDuration(BigDecimal duration) {
+    public void setDuration(int duration) {
         this.duration = duration;
     }
 

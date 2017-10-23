@@ -16,6 +16,7 @@ public class TreatmentForm {
 private String startDate;
 private String endDate;
 private List<Treatment> treatments;
+private String message;
 
     /**
      * @return the startDate
@@ -57,6 +58,20 @@ private List<Treatment> treatments;
      */
     public void setTreatments(List<Treatment> treatments) {
         this.treatments = treatments;
+    }
+
+    /**
+     * @return the message
+     */
+    public String getMessage() {
+        return message;
+    }
+
+    /**
+     * @param message the message to set
+     */
+    public void setMessage(String message) {
+        this.message = message;
     }
     
 }

@@ -9,6 +9,7 @@ import java.time.Instant;
 import java.time.format.DateTimeParseException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.util.StringUtils;
 
 /**
  *
@@ -21,7 +22,7 @@ public class DateUtilities {
         public Instant createInstantFromDateTimeString(String dateString){
         
         Instant date = null;
-        if(null!=dateString) {
+        if(StringUtils.hasText(dateString)) {
             try {
                 date = Instant.parse(dateString);
             }catch(DateTimeParseException pe){
