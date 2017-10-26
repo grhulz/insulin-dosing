@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    <title>Meal Boluses</title>
+    <title>Initialize Device Status Data</title>
 
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/ui-darkness/jquery-ui.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
@@ -21,36 +21,22 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="mealboluses">Meal Boluses</a>
+            <a class="navbar-brand" href="devices">Initialize Device Status Data</a>
         </div>
     </div>
 </nav>
 <div class="container">
     <div class="page-header">
-        <h1>Welcome to the treatments listing page</h1>
+        <h1>Welcome to the device data initialization page</h1>
     </div>
-    <form name="ui" action="#" th:action="@{/treatments}" th:object="${treatmentForm}" method="post">
-    <div class="input-group">
-        <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
-        <input type="text" class="form-control daterange" id="daterange" name="daterange" aria-describedby="basic-addon1"/>
-    </div>
-    	<input type="hidden" th:field="*{startDate}" />
-        <input type="hidden" th:field="*{endDate}" />
+    <form name="ui" action="#" th:action="@{/init/devices}" th:object="${initDevicesForm}" method="post">
+        <label for="appName">Application name:</label>
+        <input type="text" th:field="*{appName}" />
+        <label for="pumpId">Pump ID:</label>
+        <input type="text" th:field="*{pumpId}" />
         <input type="text"  th:field="*{message}" />
         <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
     </form>
-    <table class="table table-striped table-bordered">
-        <tr>
-            <td>Food Type</td>
-            <td>Time</td>
-            <td>Carbs</td>
-            <td>Absorption Time</td>
-        </tr>
-        <tr th:each="treatment: ${treatmentForm.treatments}">
-            <td th:text="${treatment.eventType}">Event Type</td>
-            <td th:text="${treatment.createdDate}">Time</td>
-        </tr>
-    </table>
 </div>
 <footer class="footer navbar-inverse navbar-fixed-bottom">
     <div class="container">

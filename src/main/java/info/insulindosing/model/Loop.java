@@ -1,75 +1,139 @@
 package info.insulindosing.model;
 
+import java.time.Instant;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.PersistenceConstructor;
+import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 /**
  *
- * @author greghull
+ * @author Greg Hull grhulz@gmail.com
  */
 @Document(collection = "devicestatus")
-public class Loop extends BaseEntity {
+@TypeAlias("Loop")
+public class Loop {
 
-    @Field("eventType")
-    protected String eventType;
+    @Field("name")
+    private String name = "";
 
-    @Field("created_at")
-    protected String loopCreatedDate;
+    @Field("recommendedBolus")
+    private double recommendedBolus;
 
-    @Field("timeStamp")
-    protected String loopModifiedDate;
+    @Field("cob")
+    private Cob cob = new Cob();
 
-    public Loop() {}
+    @Field("version")
+    private String version = "";
 
-    public Loop(String eventType) {
-        this.eventType = eventType;
+    @Field("timestamp")
+    private String loopModifiedDate = "";
+
+    @Field("iob")
+    private Iob iob = new Iob();
+
+    @Field("predicted")
+    private Predicted predicted = new Predicted();
+
+    @CreatedDate
+    @Field("createdDate")
+    private Instant createdDate = Instant.now();
+
+    public Loop() {
     }
 
-    @Override
-    public String toString() {
-        return String.format("Treatment[id=%s, createdBy='%s', createdDate='%s', modifiedDate='%s', eventType='%s', loopCreatedDate='%s', loopModifiedDate='%s']", getId(), getCreatedBy(), getCreatedDate().toString(), getModifiedDate().toString(), getEventType(), getLoopCreatedDate(), getLoopModifiedDate());
+    @PersistenceConstructor
+    public Loop(String name, Double recommendedBolus, Cob cob, String version, String loopModifiedDate, Iob iob, Predicted predicted, Instant createdDate) {
+
+        if (null != name) {
+            this.name = name;
+        }
+        if(null!=recommendedBolus){
+            this.recommendedBolus = recommendedBolus;
+        }
+        if (null != cob) {
+            this.cob = cob;
+        }
+        if (null != version) {
+            this.version = version;
+        }
+        if (null != loopModifiedDate) {
+            this.loopModifiedDate = loopModifiedDate;
+        }
+        if (null != iob) {
+            this.iob = iob;
+        }
+        if (null != predicted) {
+            this.predicted = predicted;
+        }
+        if (null != createdDate) {
+            this.createdDate = createdDate;
+        }
     }
 
-    /**
-     * @return the eventType
-     */
-    public String getEventType() {
-        return eventType;
+    public Instant getCreatedDate() {
+        return createdDate;
     }
 
-    /**
-     * @param eventType the eventType to set
-     */
-    public void setEventType(String eventType) {
-        this.eventType = eventType;
+    public void setCreatedDate(Instant createdDate) {
+        this.createdDate = createdDate;
     }
 
-    /**
-     * @return the loopCreatedDate
-     */
-    public String getLoopCreatedDate() {
-        return loopCreatedDate;
+    public String getName() {
+        return name;
     }
 
-    /**
-     * @param loopCreatedDate the loopCreatedDate to set
-     */
-    public void setLoopCreatedDate(String loopCreatedDate) {
-        this.loopCreatedDate = loopCreatedDate;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    /**
-     * @return the loopModifiedDate
-     */
+    public double getRecommendedBolus() {
+        return recommendedBolus;
+    }
+
+    public void setRecommendedBolus(double recommendedBolus) {
+        this.recommendedBolus = recommendedBolus;
+    }
+
+    public Cob getCob() {
+        return cob;
+    }
+
+    public void setCob(Cob cob) {
+        this.cob = cob;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
     public String getLoopModifiedDate() {
         return loopModifiedDate;
     }
 
-    /**
-     * @param loopModifiedDate the loopModifiedDate to set
-     */
     public void setLoopModifiedDate(String loopModifiedDate) {
         this.loopModifiedDate = loopModifiedDate;
+    }
+
+    public Iob getIob() {
+        return iob;
+    }
+
+    public void setIob(Iob iob) {
+        this.iob = iob;
+    }
+
+    public Predicted getPredicted() {
+        return predicted;
+    }
+
+    public void setPredicted(Predicted predicted) {
+        this.predicted = predicted;
     }
 
 }

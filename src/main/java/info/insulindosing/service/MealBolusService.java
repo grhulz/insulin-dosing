@@ -5,6 +5,7 @@ package info.insulindosing.service;
  * @author Greg Hull grhulz@gmail.com
  */
 
+import info.insulindosing.EventType;
 import java.math.BigDecimal;
 import java.time.Instant;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class MealBolusService {
         DateUtilities dateUtilities = new DateUtilities();
         Instant startDate = dateUtilities.createInstantFromDateTimeString(startDateString);
         Instant endDate = dateUtilities.createInstantFromDateTimeString(endDateString);
-        List<MealBolus> mealBoluses = this.mealBolusRepository.findByModifiedDateBetween(startDate, endDate);
+        List<MealBolus> mealBoluses = this.mealBolusRepository.findByCreatedDateBetweenAndEventType(startDate, endDate, EventType.MEAL_BOLUS.toString());
 //        MealBolus test = new MealBolus();
 //        test.setAbsorptionTime(BigDecimal.ONE);
 //        test.setCarbs(BigDecimal.ZERO);

@@ -9,7 +9,7 @@ function setPicker(){
         //alert("A new date range was chosen: " + moment.utc(start).format("YYYY-MM-DD HH:mm:ss[Z]") + ' to ' + moment.utc(end).format("YYYY-MM-DD HH:mm:ss[Z]"));
         document.ui.startDate.value = moment.utc(start).format("YYYY-MM-DD[T]HH:mm:ss[Z]");
         document.ui.endDate.value = moment.utc(end).format("YYYY-MM-DD[T]HH:mm:ss[Z]");
-        alert('The start date is ' + document.ui.startDate.value);
+        document.ui.submit();
         //var redirectLink = window.location.protocol + "//" + window.location.host + window.location.pathname;
         //console.log('Redirecting to: ' + redirectLink);
         //window.location.href = redirectLink;
