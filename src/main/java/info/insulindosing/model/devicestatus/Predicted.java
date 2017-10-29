@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package info.insulindosing.model;
+package info.insulindosing.model.devicestatus;
 
 import java.time.Instant;
 import org.springframework.data.annotation.CreatedDate;
@@ -17,49 +17,49 @@ import org.springframework.data.mongodb.core.mapping.Field;
  * @author Greg Hull grhulz@gmail.com
  */
 @Document(collection = "devicestatus")
-@TypeAlias("Iob")
-public class Iob {
+@TypeAlias("Predicted")
+public class Predicted {
 
-    @Field("timestamp")
-    private String loopModifiedDate;
+    @Field("startDate")
+    private String loopCreatedDate;
 
-    @Field("iob")
-    private double iob;
+    @Field("values")
+    private int[] values = {0};
 
     @CreatedDate
     @Field("createdDate")
     private Instant createdDate = Instant.now();
 
-    public Iob() {
+    public Predicted() {
     }
 
     @PersistenceConstructor
-    public Iob(String loopModifiedDate, Double iob, Instant createdDate) {
-        if (null != loopModifiedDate) {
-            this.loopModifiedDate = loopModifiedDate;
+    public Predicted(String loopCreatedDate, int[] values, Instant createdDate) {
+        if (null != loopCreatedDate) {
+            this.loopCreatedDate = loopCreatedDate;
         }
-        if(null!=iob){
-            this.iob = iob;
+        if (null != values) {
+            this.values = values;
         }
         if (null != createdDate) {
             this.createdDate = createdDate;
         }
     }
 
-    public String getLoopModifiedDate() {
-        return loopModifiedDate;
+    public String getLoopCreatedDate() {
+        return loopCreatedDate;
     }
 
-    public void setLoopModifiedDate(String loopModifiedDate) {
-        this.loopModifiedDate = loopModifiedDate;
+    public void setLoopCreatedDate(String loopCreatedDate) {
+        this.loopCreatedDate = loopCreatedDate;
     }
 
-    public double getIob() {
-        return iob;
+    public int[] getValues() {
+        return values;
     }
 
-    public void setIob(double iob) {
-        this.iob = iob;
+    public void setValues(int[] values) {
+        this.values = values;
     }
 
     public Instant getCreatedDate() {

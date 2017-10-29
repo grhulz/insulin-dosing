@@ -18,7 +18,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import info.insulindosing.model.MealBolus;
+import info.insulindosing.model.treatments.MealBolus;
 import info.insulindosing.model.form.MealBolusForm;
 import info.insulindosing.service.MealBolusService;
 

@@ -1,5 +1,7 @@
-package info.insulindosing.model;
+package info.insulindosing.model.devicestatus;
 
+import info.insulindosing.model.BaseEntity;
+import info.insulindosing.model.devicestatus.Pump;
 import java.time.Instant;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.PersistenceConstructor;

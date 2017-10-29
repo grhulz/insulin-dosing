@@ -26,3 +26,5 @@ nbdist/
 ### Log Files ###
 insulin-dosing-log*.html
 springboot-log*.html
+insulin-dosing-error-log*.html
+springboot-error-log*.html

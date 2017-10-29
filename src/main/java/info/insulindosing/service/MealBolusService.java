@@ -16,7 +16,7 @@ import java.time.format.DateTimeParseException;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import info.insulindosing.model.MealBolus;
+import info.insulindosing.model.treatments.MealBolus;
 import info.insulindosing.repository.MealBolusRepository;
 import space.janiekitty.insulindosing.service.utility.DateUtilities;
 

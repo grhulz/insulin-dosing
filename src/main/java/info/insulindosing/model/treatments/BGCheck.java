@@ -1,4 +1,4 @@
-package info.insulindosing.model;
+package info.insulindosing.model.treatments;
 
 import info.insulindosing.EventType;
 import java.time.Instant;

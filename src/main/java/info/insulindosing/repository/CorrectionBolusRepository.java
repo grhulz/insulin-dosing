@@ -1,6 +1,6 @@
 package info.insulindosing.repository;
 
-import info.insulindosing.model.CorrectionBolus;
+import info.insulindosing.model.treatments.CorrectionBolus;
 import java.time.Instant;
 import java.util.List;
 import org.springframework.data.mongodb.repository.MongoRepository;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package info.insulindosing.model;
+package info.insulindosing.model.devicestatus;
 
 import java.time.Instant;
 import org.springframework.data.annotation.PersistenceConstructor;

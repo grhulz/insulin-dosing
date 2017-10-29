@@ -1,5 +1,7 @@
-package info.insulindosing.model;
+package info.insulindosing.model.devicestatus;
 
+import info.insulindosing.model.devicestatus.Iob;
+import info.insulindosing.model.devicestatus.Battery;
 import java.time.Instant;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.PersistenceConstructor;

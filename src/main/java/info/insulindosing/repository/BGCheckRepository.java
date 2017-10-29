@@ -1,6 +1,6 @@
 package info.insulindosing.repository;
 
-import info.insulindosing.model.BGCheck;
+import info.insulindosing.model.treatments.BGCheck;
 import java.time.Instant;
 import java.util.List;
 import org.springframework.data.mongodb.repository.MongoRepository;

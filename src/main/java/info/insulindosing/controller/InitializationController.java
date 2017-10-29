@@ -6,6 +6,7 @@ package info.insulindosing.controller;
  */
     
 import info.insulindosing.model.form.InitDevicesForm;
+import info.insulindosing.model.form.InitEntriesForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,5 +52,19 @@ public class InitializationController {
         logger.debug("The message is " + message);
         initDevicesForm.setMessage(message);
         return "init-devices";
+    }
+
+    @GetMapping("/init/entries")
+    public String initEntryForm(Model model) {
+        model.addAttribute("initEntriesForm", new InitEntriesForm());
+        return "init-entries";
+    }
+
+    @PostMapping("/init/entries")
+    public String initEntryData(@ModelAttribute InitEntriesForm initEntriesForm){
+        String message = this.initDataService.initEntryData(initEntriesForm.getEntryType());
+        logger.debug("The message is " + message);
+        initEntriesForm.setMessage(message);
+        return "init-entries";
     }
 }

@@ -6,7 +6,7 @@
 package info.insulindosing.model.form;
 
 import java.util.List;
-import info.insulindosing.model.MealBolus;
+import info.insulindosing.model.treatments.MealBolus;
 
 /**
  *

@@ -5,12 +5,13 @@ package info.insulindosing.service;
  * @author Greg Hull grhulz@gmail.com
  */
 import info.insulindosing.EventType;
-import info.insulindosing.model.BGCheck;
-import info.insulindosing.model.CorrectionBolus;
-import info.insulindosing.model.LoopStatus;
-import info.insulindosing.model.MealBolus;
-import info.insulindosing.model.PumpStatus;
-import info.insulindosing.model.TempBasal;
+import info.insulindosing.model.treatments.BGCheck;
+import info.insulindosing.model.treatments.CorrectionBolus;
+import info.insulindosing.model.devicestatus.LoopStatus;
+import info.insulindosing.model.treatments.MealBolus;
+import info.insulindosing.model.devicestatus.PumpStatus;
+import info.insulindosing.model.entries.Entry;
+import info.insulindosing.model.treatments.TempBasal;
 import java.time.Instant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import info.insulindosing.repository.BGCheckRepository;
 import info.insulindosing.repository.CorrectionBolusRepository;
+import info.insulindosing.repository.EntryRepository;
 import info.insulindosing.repository.LoopStatusRepository;
 import info.insulindosing.repository.MealBolusRepository;
 import info.insulindosing.repository.PumpStatusRepository;
@@ -37,11 +39,12 @@ public class InitDataService {
     private TempBasalRepository tempBasalRepository;
     private LoopStatusRepository loopStatusRepository;
     private PumpStatusRepository pumpStatusRepository;
+    private EntryRepository entryRepository;
 
     private static final Logger logger = LogManager.getLogger(InitDataService.class);
 
     @Autowired
-    public InitDataService(TreatmentRepository treatmentRepository, MealBolusRepository mealBolusRepository, BGCheckRepository bGCheckRepository, CorrectionBolusRepository correctionBolusRepository, TempBasalRepository tempBasalRepository, LoopStatusRepository loopStatusRepository, PumpStatusRepository pumpStatusRepository) {
+    public InitDataService(TreatmentRepository treatmentRepository, MealBolusRepository mealBolusRepository, BGCheckRepository bGCheckRepository, CorrectionBolusRepository correctionBolusRepository, TempBasalRepository tempBasalRepository, LoopStatusRepository loopStatusRepository, PumpStatusRepository pumpStatusRepository, EntryRepository entryRepository) {
         this.treatmentRepository = treatmentRepository;
         this.mealBolusRepository = mealBolusRepository;
         this.bGCheckRepository = bGCheckRepository;
@@ -49,6 +52,7 @@ public class InitDataService {
         this.tempBasalRepository = tempBasalRepository;
         this.loopStatusRepository = loopStatusRepository;
         this.pumpStatusRepository = pumpStatusRepository;
+        this.entryRepository = entryRepository;
     }
 
     public String initTreatmentData(String deviceName) {
@@ -122,6 +126,27 @@ public class InitDataService {
                 pumpStatus.getRadioAdapter().setLastTunedDate(dateUtilities.createInstantFromDateTimeString(pumpStatus.getRadioAdapter().getLoopLastTuned()));
             });
             this.pumpStatusRepository.save(pumpStatuses);
+
+            message = "Status Init Successful";
+
+        } catch (Exception e) {
+            logger.error(e.getMessage(),e);
+        }
+        return message;
+    }
+
+    public String initEntryData(String type) {
+        String message = "Status init has failed";
+        try {
+            DateUtilities dateUtilities = new DateUtilities();
+            logger.error("The type is " + type);
+            List<Entry> entries = this.entryRepository.findByEntryType(type);
+            entries.stream().forEach(entry -> {
+                entry.setCreatedDate(dateUtilities.createInstantFromDateTimeString(entry.getLoopCreatedDate()));
+                entry.setModifiedDate(Instant.now());
+                entry.setCreatedBy("Insulin Dosing");
+            });
+            this.entryRepository.save(entries);
 
             message = "Status Init Successful";
 

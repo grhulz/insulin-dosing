@@ -5,7 +5,7 @@
  */
 package info.insulindosing.repository;
 
-import info.insulindosing.model.PumpStatus;
+import info.insulindosing.model.devicestatus.PumpStatus;
 import java.time.Instant;
 import java.util.List;
 import org.springframework.data.mongodb.repository.MongoRepository;

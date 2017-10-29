@@ -1,5 +1,6 @@
-package info.insulindosing.model;
+package info.insulindosing.model.treatments;
 
+import info.insulindosing.model.BaseEntity;
 import java.time.Instant;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.PersistenceConstructor;
