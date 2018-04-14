@@ -6,19 +6,18 @@ package info.insulindosing.service;
  */
 
 import info.insulindosing.EventType;
-import java.math.BigDecimal;
+
 import java.time.Instant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import info.insulindosing.model.treatments.MealBolus;
 import info.insulindosing.repository.MealBolusRepository;
-import space.janiekitty.insulindosing.service.utility.DateUtilities;
+import info.insulindosing.service.util.DateUtilities;
 
 @Service
 public class MealBolusService {

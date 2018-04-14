@@ -27,7 +27,7 @@ import info.insulindosing.repository.MealBolusRepository;
 import info.insulindosing.repository.PumpStatusRepository;
 import info.insulindosing.repository.TempBasalRepository;
 import info.insulindosing.repository.TreatmentRepository;
-import space.janiekitty.insulindosing.service.utility.DateUtilities;
+import info.insulindosing.service.util.DateUtilities;
 
 @Service
 public class InitDataService {
