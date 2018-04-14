@@ -20,20 +20,7 @@
             </CustomHTMLLayout>
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1" modulate="true" />
-                <SizeBasedTriggeringPolicy size="10 MB" />
-            </Policies>
-        </RollingFile>
-        <RollingFile name="App-File-Appender-Error">
-            <FileName>${log-path}/insulin-dosing-error-log.html</FileName>
-            <FilePattern>${log-path}/insulin-dosing-error-log-%d{yyyy-MM-dd}.html</FilePattern>
-            <CustomHTMLLayout>
-                <charset>UTF-8</charset>
-                <title>Insulin Dosing Error Logs</title>
-                <locationInfo>true</locationInfo>
-            </CustomHTMLLayout>
-            <Policies>
-                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
-                <SizeBasedTriggeringPolicy size="10 MB" />
+                <SizeBasedTriggeringPolicy size="1 MB" />
             </Policies>
         </RollingFile>
         <RollingFile name="SpringBoot-File-Appender">
@@ -46,38 +33,18 @@
             </CustomHTMLLayout>
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1" modulate="true" />
-                <SizeBasedTriggeringPolicy size="10 MB" />
-            </Policies>
-        </RollingFile>
-        <RollingFile name="SpringBoot-File-Appender-Error">
-            <FileName>${log-path}/springboot-error-log.html</FileName>
-            <FilePattern>${log-path}/springboot-error-log-%d{yyyy-MM-dd}.html</FilePattern>
-            <CustomHTMLLayout>
-                <charset>UTF-8</charset>
-                <title>Spring Boot Error Logs</title>
-                <locationInfo>true</locationInfo>
-            </CustomHTMLLayout>
-            <Policies>
-                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
-                <SizeBasedTriggeringPolicy size="10 MB" />
+                <SizeBasedTriggeringPolicy size="1 MB" />
             </Policies>
         </RollingFile>
     </Appenders>
     <Loggers>
-        <Logger name="org.springframework.web" level="info" additivity="false">
+        <Logger name="org.springframework.web" level="info">
             <AppenderRef ref="SpringBoot-File-Appender"/>
             <AppenderRef ref="Console-Appender"/>
         </Logger>
-        <Logger name="org.springframework.web" level="error" additivity="false">
-            <AppenderRef ref="SpringBoot-File-Appender-Error"/>
-            <AppenderRef ref="Console-Appender"/>
-        </Logger>
-        <Logger name="info.insulindosing" level="debug" additivity="false">
+        <Logger name="info.insulindosing" level="debug">
             <AppenderRef ref="App-File-Appender"/>
-         </Logger>
-        <Logger name="info.insulindosing" level="error" additivity="false">
-            <AppenderRef ref="App-File-Appender-Error"/>
-         </Logger>
+        </Logger>
         <Root>
             <AppenderRef ref="Console-Appender"/>
         </Root>

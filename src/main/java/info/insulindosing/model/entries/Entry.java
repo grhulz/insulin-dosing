@@ -113,4 +113,8 @@ public class Entry extends BaseEntity {
         this.entryType = entryType;
     }
 
+
+    public long getCreatedDateEpoch(){
+        return this.createdDate.toEpochMilli();
+    }
 }
